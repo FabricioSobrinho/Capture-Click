@@ -14,6 +14,8 @@
   -webkit-text-size-adjust: 100%;
   font-size: 62.5%;
 
+}
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -26,13 +28,20 @@ body {
   font-size: 1.6rem;
   min-width: 32rem;
   min-height: 100vh;
+  overflow-y: hidden;
+}
+.topContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 8vh;
+}
+.form button {
+  margin: 0.5rem;
 }
 .App {
   height: 400px;
   width: 1000px;
   background-color: red;
 }
-span{ 
-  background-color: #f0f8ff;
-  border-radius: 50%;
-}
+

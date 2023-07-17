@@ -2,10 +2,13 @@
 import { useState } from "react"
 import "./App.css"
 
+import { BsArrowReturnLeft, BsArrowReturnRight } from 'react-icons/bs'
+
 function App() {
   const [divs, setDivs] = useState([])
-  const [counter, setCounter] = useState(0)
+  const [deletedDivs, setDeletedDivs] = useState([])
 
+  // circle style and markup
   const createCircle = (widthPos, heightPos) => {
     const style = {
       position: "absolute",
@@ -17,27 +20,46 @@ function App() {
       width: "5vh",
       zIndex: "99999",
     }
-    const novaDiv = <div key={`"${counter}A"`} style={style}></div>
+    const novaDiv = <div key={divs.length} style={style}></div>
     setDivs([...divs, novaDiv])
-    setCounter(() => counter + 1)
   }
 
+  //circle insertion on page
   const captureClick = (e) => {
     createCircle(e.pageX, e.pageY)
   }
+  // circle remotion on the page
   const removeClick = () => {
-    setDivs(divs.slice(0, divs.length - 1));
-    setCounter(counter - 1);
+    if (divs.length > 0) {
+      setDivs(divs.slice(0, divs.length - 1))
+      setDeletedDivs([...deletedDivs, divs[divs.length - 1]])
+    } else {
+      alert("No more undo moves!")
+    }
+  }
+  // re insert of the circle in the page
+  const redoClick = () => {
+    if (deletedDivs.length > 0) {
+      setDivs([...divs, deletedDivs[deletedDivs.length - 1]])
+      setDeletedDivs(deletedDivs.slice(0, deletedDivs.length - 1))
+    } else {
+      alert("No more redo moves.")
+    }
   }
 
   return (
     <div>
+      <h1>Click on the red area to mark clicks.</h1>
+      <div className="topContainer">
 
-      <button onClick={removeClick}>Undo</button>
-
+        <div className="form">
+          <button onClick={removeClick}>{<BsArrowReturnLeft />} Undo</button>
+          <button onClick={redoClick}>Redo {<BsArrowReturnRight />}</button>
+        </div>
+        <element>Number of circles: {divs.length}</element>
+      </div>
       <div className="App" onClick={captureClick} key={divs.length + 1}>
         {divs && divs.map((div) => div)}
-
       </div>
     </div>
   )
