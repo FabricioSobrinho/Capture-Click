@@ -48,7 +48,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="main">
       <h1>Click on the red area to mark clicks.</h1>
       <div className="topContainer">
 

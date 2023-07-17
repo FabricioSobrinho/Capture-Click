@@ -30,6 +30,14 @@ body {
   min-height: 100vh;
   overflow-y: hidden;
 }
+h1 {
+  font-size: 2em;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
 .topContainer {
   display: flex;
   justify-content: space-around;
@@ -40,8 +48,26 @@ body {
   margin: 0.5rem;
 }
 .App {
-  height: 400px;
-  width: 1000px;
+  height: 60vh;
+  width: 80vw;
   background-color: red;
 }
+@media (max-width: 600px) {
+  h1 {
+    font-size: 100%;
+  }
+  .App {
+    height: 80vh;
+    width: 95vw;
+  }
+  .topContainer{ 
+    flex-direction: column;
+    place-items: center;
+    height: 15vh;
+  }
+  button {
+    height: 7.5vh;
+    width: 20vw;
 
+  }
+}
