@@ -28,8 +28,9 @@ body {
   min-height: 100vh;
 }
 .App {
-  height: 100vh;
-  width: 100vw;
+  height: 400px;
+  width: 1000px;
+  background-color: red;
 }
 span{ 
   background-color: #f0f8ff;

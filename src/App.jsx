@@ -1,35 +1,44 @@
 // import { useState } from "react"
-import { useRef } from "react"
+import { useState } from "react"
 import "./App.css"
-import styled from 'styled-components'
+
 function App() {
-  const view = useRef()
+  const [divs, setDivs] = useState([])
+  const [counter, setCounter] = useState(0)
 
   const createCircle = (widthPos, heightPos) => {
-    document.innerHTML += `Ola`
-
-    console.log(widthPos, heightPos)
-
+    const style = {
+      position: "absolute",
+      left: widthPos - 8,
+      top: heightPos - 8,
+      border: "2px solid #5f00f8",
+      borderRadius: "50%",
+      height: "5vh",
+      width: "5vh",
+      zIndex: "99999",
+    }
+    const novaDiv = <div key={`"${counter}A"`} style={style}></div>
+    setDivs([...divs, novaDiv])
+    setCounter(() => counter + 1)
   }
 
   const captureClick = (e) => {
-    console.log(e.view);
-    console.log(window.innerHeight);
-    // createCircle(e.view.innerWidth, e.view.innerHeight)
-
+    createCircle(e.pageX, e.pageY)
+  }
+  const removeClick = () => {
+    setDivs(divs.slice(0, divs.length - 1));
+    setCounter(counter - 1);
   }
 
-  const Div = styled.div`
-  background: #BF4F74;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  height: 5vh;
-  width: 5vh;
-`
-
   return (
-    <div className="App" onClick={captureClick} ref={view}>
-      <Div></Div>
+    <div>
+
+      <button onClick={removeClick}>Undo</button>
+
+      <div className="App" onClick={captureClick} key={divs.length + 1}>
+        {divs && divs.map((div) => div)}
+
+      </div>
     </div>
   )
 }
