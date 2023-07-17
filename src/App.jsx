@@ -23,10 +23,10 @@ function App() {
     const novaDiv = <div key={divs.length} style={style}></div>
     setDivs([...divs, novaDiv])
   }
-
   //circle insertion on page
   const captureClick = (e) => {
     createCircle(e.pageX, e.pageY)
+    divs.length === 0 ? setDeletedDivs([]) : ''
   }
   // circle remotion on the page
   const removeClick = () => {
@@ -39,6 +39,7 @@ function App() {
   }
   // re insert of the circle in the page
   const redoClick = () => {
+
     if (deletedDivs.length > 0) {
       setDivs([...divs, deletedDivs[deletedDivs.length - 1]])
       setDeletedDivs(deletedDivs.slice(0, deletedDivs.length - 1))
@@ -51,7 +52,6 @@ function App() {
     <div className="main">
       <h1>Click on the red area to mark clicks.</h1>
       <div className="topContainer">
-
         <div className="form">
           <button onClick={removeClick}>{<BsArrowReturnLeft />} Undo</button>
           <button onClick={redoClick}>Redo {<BsArrowReturnRight />}</button>
