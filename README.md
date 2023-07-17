@@ -5,3 +5,4 @@ The app captures the user's mouse clicks and generates a blue circle at that loc
 Furthermore, it allows users to undo and redo their actions. 
 
 <a href="https://capture-click-rho.vercel.app/"> Click here to see it! </a>
+
